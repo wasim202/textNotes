@@ -33,6 +33,6 @@ notes.post("/", (req, res) => {
   }
 });
 
-notes.delete("/:id", (req, res) => {});
+//notes.delete("/:id", (req, res) => {});
 
 module.exports = notes;
