@@ -1,6 +1,6 @@
 const notes = require("express").Router();
 // const { application } = require("express");
-const { v4: uuidv4 } = require("../../helpers/uuid");
+const uuid = require("../../helpers/uuid");
 //const uuid = require("../../helpers/uuid");
 const {
   readFromFile,
@@ -14,7 +14,7 @@ notes.get("/", (req, res) => {
 });
 
 // POST Route for a new UX/UI note
-notes.post("/notes", (req, res) => {
+notes.post("/", (req, res) => {
   console.log(req.body);
 
   const { title, text } = req.body;
@@ -23,7 +23,7 @@ notes.post("/notes", (req, res) => {
     const newNote = {
       title,
       text,
-      note_id: uuidv4(),
+      id: uuid(),
     };
     console.log(newNote);
     readAndAppend(newNote, "./db/db.json");
@@ -32,5 +32,7 @@ notes.post("/notes", (req, res) => {
     res.console.error(`Error in adding note`);
   }
 });
+
+notes.delete("/:id", (req, res) => {});
 
 module.exports = notes;
