@@ -33,6 +33,10 @@ notes.post("/", (req, res) => {
   }
 });
 
-//notes.delete("/:id", (req, res) => {});
+notes.delete("/:id", (req, res) => {
+  const id = req.url.slice(1);
+
+	readAndDelete(id, "./db/db.json");
+	res.json(`Note Deleted`);});
 
 module.exports = notes;
